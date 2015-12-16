@@ -1,0 +1,2 @@
+Visual C++ 2013 - 64bit static lib
+The current version is 3.1, from src (latest commit 70fd348432) 16/07/2014 built on vc2013 x64 release static.

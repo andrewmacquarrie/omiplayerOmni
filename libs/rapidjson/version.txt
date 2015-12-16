@@ -1,0 +1,1 @@
+rapidjson version 0.11
