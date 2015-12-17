@@ -14,6 +14,13 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
+#ifdef _MSC_VER
+#include <boost/config/compiler/visualc.hpp>
+#endif
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/filesystem.hpp>
+
 using namespace DirectX;
 
 bool MIRROR = true;
@@ -722,6 +729,34 @@ void decodeThread()
 	}
 }
 
+void loadVideoConfig(boost::filesystem::path filename) {
+	boost::filesystem::path configFile = (filename.parent_path() / boost::filesystem::path(filename.stem().string() + ".json"));
+
+	try
+	{
+		std::ifstream file(configFile.string());
+		if (file) {
+			std::stringstream ss;
+			ss << file.rdbuf();
+			// send your JSON above to the parser below, but populate ss first
+			boost::property_tree::ptree pt;
+			boost::property_tree::read_json(ss, pt);
+			file.close();
+			// v = pt.get("particles", -1.f);
+		}
+		else {
+			// set defaults
+		}
+
+	}
+	catch (std::exception const& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+
+}
+
 // Windows main entry point wrapper
 int main(int argc, char* argv[]);
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
@@ -883,6 +918,9 @@ int main(int argc, char* argv[])
 	}
 	else
 		exit(0);
+
+	boost::filesystem::path p(argv[1]);
+	loadVideoConfig(p);
 
 	// Select the adapter with more memory
 	IDXGIAdapter* selected_pAdapter = nullptr;

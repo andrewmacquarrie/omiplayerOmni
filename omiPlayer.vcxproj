@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>libs\glfw\lib;libs\libav\lib;libs\libovr\lib;libs\glew\lib;libs\openal\lib\Win64;$(LibraryPath)</LibraryPath>
-    <IncludePath>libs\libovr\src;libs\rapidjson\include;libs\glfw\include;libs\libav\include;libs\libovr\include;libs\glm\include;libs\glew\include;libs\openal\include;libs\stb;$(IncludePath)</IncludePath>
+    <IncludePath>libs\libovr\src;libs\rapidjson\include;libs\glfw\include;libs\libav\include;libs\libovr\include;libs\glm\include;libs\glew\include;libs\openal\include;libs\stb;C:\Software\boost_1_59_0;$(IncludePath)</IncludePath>
     <SourcePath>libs\libovr\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -77,6 +77,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,6 +86,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>advapi32.lib;shell32.lib;ws2_32.lib;winmm.lib;DXGI.lib;shlwapi.lib;OpenAL32.lib;avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avresample.lib;avutil.lib;swscale.lib;libovr64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Software\boost_1_59_0\stage\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>$(SolutionDir)post-build.bat "$(OutDir)"</Command>
