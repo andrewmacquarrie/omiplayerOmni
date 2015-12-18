@@ -1,0 +1,118 @@
+﻿Build started 18/12/2015 15:57:54.
+Project "C:\projects\omiplayerOmni\omiPlayer.vcxproj" on node 2 (Rebuild target(s)).
+FxCompile:
+  C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T ps_4_0_level_9_1 /Fh "src\YUV_PixelShader.h" /Fo "C:\projects\omiplayerOmni\x64\Release\YUV_PixelShader.cso" /Vn "YUV_PixelShader" src\YUV_PixelShader.hlsl 
+  compilation header save succeeded; see C:\projects\omiplayerOmni\src\YUV_PixelShader.h
+  compilation object save succeeded; see C:\projects\omiplayerOmni\x64\Release\YUV_PixelShader.cso
+  C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T ps_4_0_level_9_1 /Fh "src\RGB_PixelShader.h" /Fo "C:\projects\omiplayerOmni\x64\Release\RGB_PixelShader.cso" /Vn "RGB_PixelShader" src\RGB_PixelShader.hlsl 
+  compilation header save succeeded; see C:\projects\omiplayerOmni\src\RGB_PixelShader.h
+  compilation object save succeeded; see C:\projects\omiplayerOmni\x64\Release\RGB_PixelShader.cso
+  C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T vs_4_0_level_9_1 /Fh "src\RGB_VertexShader.h" /Fo "C:\projects\omiplayerOmni\x64\Release\RGB_VertexShader.cso" /Vn "RGB_VertexShader" src\RGB_VertexShader.hlsl 
+C:\projects\omiplayerOmni\src\RGB_VertexShader.hlsl(31,2-51): warning X3206: implicit truncation of vector type
+C:\projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
+C:\projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
+C:\projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
+C:\projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
+C:\projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: Output value 'main' is not completely initialized
+  
+  compilation header save succeeded; see C:\projects\omiplayerOmni\src\RGB_VertexShader.h
+  compilation object save succeeded; see C:\projects\omiplayerOmni\x64\Release\RGB_VertexShader.cso
+  C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T vs_4_0_level_9_1 /Fh "src\YUV_VertexShader.h" /Fo "C:\projects\omiplayerOmni\x64\Release\YUV_VertexShader.cso" /Vn "YUV_VertexShader" src\YUV_VertexShader.hlsl 
+  compilation header save succeeded; see C:\projects\omiplayerOmni\src\YUV_VertexShader.h
+  compilation object save succeeded; see C:\projects\omiplayerOmni\x64\Release\YUV_VertexShader.cso
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Release\omiPlayerOmni.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt src\stdafx.cpp
+  stdafx.cpp
+c:\projects\omiplayeromni\libs\libav\include\libavutil\common.h(152): warning C4244: 'return' : conversion from 'int64_t' to 'int32_t', possible loss of data
+c:\projects\omiplayeromni\libs\libav\include\libavutil\common.h(235): warning C4244: 'argument' : conversion from 'uint64_t' to 'uint32_t', possible loss of data
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\omiPlayerOmni.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt src\Console.cpp src\omiPlayer.cpp src\VideoPlayer.cpp
+  Console.cpp
+  omiPlayer.cpp
+src\omiPlayer.cpp(254): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+src\omiPlayer.cpp(303): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+src\omiPlayer.cpp(404): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+src\omiPlayer.cpp(472): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+src\omiPlayer.cpp(444): warning C4102: 'std' : unreferenced label
+src\omiPlayer.cpp(437): warning C4101: 'fromlen' : unreferenced local variable
+src\omiPlayer.cpp(436): warning C4101: 'sAddr' : unreferenced local variable
+src\omiPlayer.cpp(592): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+src\omiPlayer.cpp(605): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+src\omiPlayer.cpp(615): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+src\omiPlayer.cpp(629): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+src\omiPlayer.cpp(639): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+src\omiPlayer.cpp(933): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+src\omiPlayer.cpp(936): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+src\omiPlayer.cpp(962): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
+src\omiPlayer.cpp(979): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
+src\omiPlayer.cpp(1248): warning C4806: '&' : unsafe operation: no value of type 'bool' promoted to type 'ovrHmdCaps' can equal the given constant
+src\omiPlayer.cpp(957): warning C4101: 'pOutput' : unreferenced local variable
+  VideoPlayer.cpp
+src\VideoPlayer.cpp(45): warning C4804: '<' : unsafe use of type 'bool' in operation
+src\VideoPlayer.cpp(208): warning C4244: '=' : conversion from 'float' to 'UINT', possible loss of data
+ResourceCompile:
+  C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"x64\Release\omiPlayer.res" omiPlayer.rc 
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Software\boost_1_59_0\stage\x64\lib advapi32.lib shell32.lib ws2_32.lib winmm.lib DXGI.lib shlwapi.lib OpenAL32.lib avcodec.lib avdevice.lib avfilter.lib avformat.lib avresample.lib avutil.lib swscale.lib libovr64.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.lib" /MACHINE:X64 x64\Release\omiPlayer.res
+  x64\Release\Console.obj
+  x64\Release\omiPlayer.obj
+  x64\Release\stdafx.obj
+  x64\Release\VideoPlayer.obj
+  Generating code
+c:\software\boost_1_59_0\boost\property_tree\detail\json_parser\standard_callbacks.hpp(132): warning C4715: 'boost::property_tree::json_parser::detail::standard_callbacks<boost::property_tree::basic_ptree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > >::new_tree' : not all control paths return a value
+  Finished generating code
+  omiPlayer.vcxproj -> C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.exe
+PostBuildEvent:
+  C:\projects\omiplayerOmni\post-build.bat "C:\projects\omiplayerOmni\x64\Release\"
+  :VCEnd
+  Copy DLLs to "C:\projects\omiplayerOmni\x64\Release\"
+  C:\projects\omiplayerOmni\libs\glew\lib\glew32.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\avcodec-55.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\avdevice-54.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\avfilter-4.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\avformat-55.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\avresample-1.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\avutil-53.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\liblcms2-2.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libmp3lame-0.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libogg-0.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libopus-0.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libpng16-16.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\librtmp.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libtiff-5.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libtiffxx-5.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libvo-aacenc-0.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libvorbis-0.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libvorbisenc-2.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libvorbisfile-3.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\libx264-125.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\SDL.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\swscale-2.dll
+  1 File(s) copied
+  C:\projects\omiplayerOmni\libs\libav\lib\zlib1.dll
+  1 File(s) copied
+Done Building Project "C:\projects\omiplayerOmni\omiPlayer.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:14.14
