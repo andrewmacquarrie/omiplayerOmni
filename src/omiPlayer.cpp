@@ -39,6 +39,13 @@ bool playing{ false };
 bool first_frame{ true };
 
 
+// config settings for omni (multi) player
+bool shouldSendUDPPackets { false };
+bool shouldCameraTrack{ false };
+std::string udp_ip_address{ "" };
+std::string cameraTrackCSV{ "" };
+int udp_port{ 0 };
+
 // Source
 enum class MediaType
 {
@@ -520,7 +527,9 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 			if (!caveMode)
 				SetWindowText(hWnd, title);
 
-			SendDataPacket(playing);
+			if (shouldSendUDPPackets) {
+				SendDataPacket(playing);
+			}
 		}
 		if (wp == VK_F1)
 		{
@@ -742,7 +751,18 @@ void loadVideoConfig(boost::filesystem::path filename) {
 			boost::property_tree::ptree pt;
 			boost::property_tree::read_json(ss, pt);
 			file.close();
-			// v = pt.get("particles", -1.f);
+
+			if (boost::optional<std::string> ip_address = pt.get_optional<std::string>("ip_address")) {
+				shouldSendUDPPackets = true;
+				udp_ip_address = ip_address.value();
+				udp_port = pt.get<int>("port");
+			}
+
+			if (boost::optional<std::string> tracking_csv = pt.get_optional<std::string>("tracking_csv")) {
+				shouldCameraTrack = true;
+				cameraTrackCSV = tracking_csv.value();
+			}
+
 		}
 		else {
 			// set defaults
