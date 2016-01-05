@@ -435,8 +435,6 @@ void SendDataPacket(bool play) {
 	addrinfo hints;
 	sockaddr sAddr;
 	int fromlen;
-	const char czPort[] = "7755";
-	const char czAddy[] = "127.0.0.1";
 
 	WSADATA wsa;
 	unsigned short usWSAVersion = MAKEWORD(2, 2);
@@ -460,7 +458,8 @@ void SendDataPacket(bool play) {
 	hints.ai_protocol = IPPROTO_UDP;
 	hints.ai_socktype = SOCK_DGRAM;
 
-	if (getaddrinfo(czAddy, czPort, &hints, &pAddr))
+	std::string port = std::to_string(udp_port);
+	if (getaddrinfo(udp_ip_address.c_str(), port.c_str() , &hints, &pAddr))
 	{
 		std::cerr << "Could not resolve address...\n";
 		std::cin.get();
