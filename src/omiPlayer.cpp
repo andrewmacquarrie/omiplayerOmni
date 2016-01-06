@@ -762,6 +762,10 @@ void loadVideoConfig(boost::filesystem::path filename) {
 				cameraTrackCSV = tracking_csv.value();
 			}
 
+			if (boost::optional<int> caveWidth = pt.get_optional<int>("cave_width")) {
+				caveWindowClientRect.right = caveWidth.value();
+			}
+
 		}
 		else {
 			// set defaults
@@ -807,6 +811,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 int main(int argc, char* argv[])
 {
+	boost::filesystem::path p(argv[1]);
+	loadVideoConfig(p);
+
+
 	static char title[256];
 
 	std::thread pollThread;
@@ -937,9 +945,6 @@ int main(int argc, char* argv[])
 	}
 	else
 		exit(0);
-
-	boost::filesystem::path p(argv[1]);
-	loadVideoConfig(p);
 
 	// Select the adapter with more memory
 	IDXGIAdapter* selected_pAdapter = nullptr;
