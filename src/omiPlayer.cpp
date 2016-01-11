@@ -63,6 +63,9 @@ bool shouldCameraTrack{ false };
 std::string udp_ip_address{ "" };
 std::string cameraTrackCSV{ "" };
 int udp_port{ 0 };
+float initialX{ 0.0f };
+float initialY{ 0.0f };
+float initialZ{ 0.0f };
 
 // Source
 enum class MediaType
@@ -312,16 +315,18 @@ void RenderCAVEFrame(int wallID)
 		0.1f, 1000.0f);
 		modelview = XMMatrixRotationY(XMConvertToRadians(90)) * modelview;*/
 		eyeProj = XMMatrixPerspectiveRH(insetZoom, insetZoom * insetScreenHeight / insetScreenWidth, 0.1f, 1000.0f);
-		modelview = XMMatrixRotationY(XMConvertToRadians(-180)); // I would have expected this to be -90 (case 1 above) - but in fact forward wall is case 0...
+		modelview = XMMatrixRotationY(XMConvertToRadians(-90));
 		modelview = modelview * XMMatrixRotationRollPitchYaw(XMConvertToRadians(insetPitch), XMConvertToRadians(insetYaw), 0.0f);
 		break;
 	}
 
-	XMMATRIX cameraTrackMatrix = XMMatrixRotationRollPitchYaw(XMConvertToRadians(cameraPitch), XMConvertToRadians(cameraYaw), 0.0f);
+	//XMMATRIX cameraTrackMatrix = XMMatrixRotationRollPitchYaw(XMConvertToRadians(cameraPitch), XMConvertToRadians(cameraYaw), 0.0f);
 
-	cameraTrackMatrix = XMMatrixRotationZ(cameraZ) * XMMatrixRotationX(cameraX) * XMMatrixRotationY(cameraY);
+	XMMATRIX initialMatrix = XMMatrixRotationZ(initialZ) * XMMatrixRotationX(initialX) * XMMatrixRotationY(initialY);
 
-	modelview = cameraTrackMatrix * modelview * XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees));
+	XMMATRIX cameraTrackMatrix = XMMatrixRotationZ(cameraZ) * XMMatrixRotationX(cameraX) * XMMatrixRotationY(cameraY);
+
+	modelview = initialMatrix * cameraTrackMatrix * modelview * XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees));
 
 	XMMATRIX texmat = XMMatrixIdentity();
 	if (bottomUp)
@@ -844,6 +849,12 @@ void loadVideoConfig(boost::filesystem::path filename) {
 
 			if (boost::optional<int> caveHeightOverride = pt.get_optional<int>("cave_height_override")) {
 				caveWindowClientRect.bottom = caveHeightOverride.value();
+			}
+
+			if (boost::optional<float> y = pt.get_optional<float>("initial_x")) {
+				initialX = y.value();
+				initialY = pt.get<float>("initial_y");
+				initialZ = pt.get<float>("initial_z");
 			}
 		}
 		else {

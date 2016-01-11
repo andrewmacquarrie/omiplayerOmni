@@ -1,62 +1,31 @@
-﻿Build started 11/01/2016 12:56:58.
-     1>Project "C:\Projects\omiplayerOmni\omiPlayer.vcxproj" on node 2 (Rebuild target(s)).
-     1>FxCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T ps_4_0_level_9_1 /Fh "src\YUV_PixelShader.h" /Fo "C:\Projects\omiplayerOmni\x64\Release\YUV_PixelShader.cso" /Vn "YUV_PixelShader" src\YUV_PixelShader.hlsl 
-         compilation header save succeeded; see C:\Projects\omiplayerOmni\src\YUV_PixelShader.h
-         compilation object save succeeded; see C:\Projects\omiplayerOmni\x64\Release\YUV_PixelShader.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T ps_4_0_level_9_1 /Fh "src\RGB_PixelShader.h" /Fo "C:\Projects\omiplayerOmni\x64\Release\RGB_PixelShader.cso" /Vn "RGB_PixelShader" src\RGB_PixelShader.hlsl 
-         compilation header save succeeded; see C:\Projects\omiplayerOmni\src\RGB_PixelShader.h
-         compilation object save succeeded; see C:\Projects\omiplayerOmni\x64\Release\RGB_PixelShader.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T vs_4_0_level_9_1 /Fh "src\RGB_VertexShader.h" /Fo "C:\Projects\omiplayerOmni\x64\Release\RGB_VertexShader.cso" /Vn "RGB_VertexShader" src\RGB_VertexShader.hlsl 
-     1>C:\Projects\omiplayerOmni\src\RGB_VertexShader.hlsl(31,2-51): warning X3206: implicit truncation of vector type
-     1>C:\Projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
-     1>C:\Projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
-     1>C:\Projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
-     1>C:\Projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: 'main': Top-level return value is not completely initialized
-     1>C:\Projects\omiplayerOmni\src\RGB_VertexShader.hlsl(24,14-29): warning X3578: Output value 'main' is not completely initialized
-         
-         compilation header save succeeded; see C:\Projects\omiplayerOmni\src\RGB_VertexShader.h
-         compilation object save succeeded; see C:\Projects\omiplayerOmni\x64\Release\RGB_VertexShader.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T vs_4_0_level_9_1 /Fh "src\YUV_VertexShader.h" /Fo "C:\Projects\omiplayerOmni\x64\Release\YUV_VertexShader.cso" /Vn "YUV_VertexShader" src\YUV_VertexShader.hlsl 
-         compilation header save succeeded; see C:\Projects\omiplayerOmni\src\YUV_VertexShader.h
-         compilation object save succeeded; see C:\Projects\omiplayerOmni\x64\Release\YUV_VertexShader.cso
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Release\omiPlayerOmni.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt src\stdafx.cpp
-         stdafx.cpp
-     1>c:\projects\omiplayeromni\libs\libav\include\libavutil\common.h(152): warning C4244: 'return' : conversion from 'int64_t' to 'int32_t', possible loss of data
-     1>c:\projects\omiplayeromni\libs\libav\include\libavutil\common.h(235): warning C4244: 'argument' : conversion from 'uint64_t' to 'uint32_t', possible loss of data
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\omiPlayerOmni.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt src\Console.cpp src\omiPlayer.cpp src\trackCamera.cpp src\VideoPlayer.cpp
-         Console.cpp
+﻿Build started 11/01/2016 14:59:30.
+     1>Project "C:\Projects\omiplayerOmni\omiPlayer.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\omiPlayerOmni.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt src\omiPlayer.cpp
          omiPlayer.cpp
      1>src\omiPlayer.cpp(42): warning C4244: 'initializing' : conversion from 'float' to 'LONG', possible loss of data
-     1>src\omiPlayer.cpp(213): warning C4244: '=' : conversion from 'LONG' to 'FLOAT', possible loss of data
-     1>src\omiPlayer.cpp(278): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
-     1>src\omiPlayer.cpp(339): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
-     1>src\omiPlayer.cpp(447): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
-     1>src\omiPlayer.cpp(514): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(485): warning C4102: 'std' : unreferenced label
-     1>src\omiPlayer.cpp(480): warning C4101: 'fromlen' : unreferenced local variable
-     1>src\omiPlayer.cpp(479): warning C4101: 'sAddr' : unreferenced local variable
-     1>src\omiPlayer.cpp(667): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(680): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(690): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(704): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(714): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1019): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1022): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1045): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1062): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1331): warning C4806: '&' : unsafe operation: no value of type 'bool' promoted to type 'ovrHmdCaps' can equal the given constant
-     1>src\omiPlayer.cpp(1460): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1461): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1462): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1040): warning C4101: 'pOutput' : unreferenced local variable
-         trackCamera.cpp
-         VideoPlayer.cpp
-     1>src\VideoPlayer.cpp(45): warning C4804: '<' : unsafe use of type 'bool' in operation
-     1>src\VideoPlayer.cpp(208): warning C4244: '=' : conversion from 'float' to 'UINT', possible loss of data
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"x64\Release\omiPlayer.res" omiPlayer.rc 
+     1>src\omiPlayer.cpp(216): warning C4244: '=' : conversion from 'LONG' to 'FLOAT', possible loss of data
+     1>src\omiPlayer.cpp(281): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+     1>src\omiPlayer.cpp(344): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+     1>src\omiPlayer.cpp(452): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+     1>src\omiPlayer.cpp(519): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(490): warning C4102: 'std' : unreferenced label
+     1>src\omiPlayer.cpp(485): warning C4101: 'fromlen' : unreferenced local variable
+     1>src\omiPlayer.cpp(484): warning C4101: 'sAddr' : unreferenced local variable
+     1>src\omiPlayer.cpp(672): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(685): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(695): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(709): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(719): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1030): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1033): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1056): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1073): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1342): warning C4806: '&' : unsafe operation: no value of type 'bool' promoted to type 'ovrHmdCaps' can equal the given constant
+     1>src\omiPlayer.cpp(1471): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1472): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1473): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1051): warning C4101: 'pOutput' : unreferenced local variable
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Projects\omiplayerOmni\x64\Release\omiPlayerOmni.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Software\boost_1_59_0\stage\x64\lib advapi32.lib shell32.lib ws2_32.lib winmm.lib DXGI.lib shlwapi.lib OpenAL32.lib avcodec.lib avdevice.lib avfilter.lib avformat.lib avresample.lib avutil.lib swscale.lib libovr64.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Projects\omiplayerOmni\x64\Release\omiPlayerOmni.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Projects\omiplayerOmni\x64\Release\omiPlayerOmni.lib" /MACHINE:X64 x64\Release\omiPlayer.res
          x64\Release\Console.obj
@@ -122,8 +91,8 @@
          0 File(s) copied
          0 File(s) copied
          0 File(s) copied
-     1>Done Building Project "C:\Projects\omiplayerOmni\omiPlayer.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Projects\omiplayerOmni\omiPlayer.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.75
+Time Elapsed 00:00:03.76
