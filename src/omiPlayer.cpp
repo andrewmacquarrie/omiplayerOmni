@@ -54,6 +54,7 @@ float insetYaw{ 0.0f };
 float cameraZ{ 0.0f };
 float cameraX{ 0.0f };
 float cameraY{ 0.0f };
+float cameraW{ 0.0f };
 
 float insetPitch{ 0.0f };
 
@@ -66,6 +67,8 @@ int udp_port{ 0 };
 float initialX{ 0.0f };
 float initialY{ 0.0f };
 float initialZ{ 0.0f };
+
+bool lockToYRotation{ false };
 
 // Source
 enum class MediaType
@@ -213,7 +216,7 @@ void InitCAVE()
 			caveViewports[i].TopLeftX = 4200;
 			//caveViewports[i].Height = (float)caveWindowClientRect.bottom;
 			caveViewports[i].Height = insetScreenHeight;
-			caveViewports[i].Width = caveWindowClientRect.bottom;
+			caveViewports[i].Width = insetScreenWidth; // caveWindowClientRect.bottom;
 			break;
 		}
 
@@ -324,7 +327,12 @@ void RenderCAVEFrame(int wallID)
 
 	XMMATRIX initialMatrix = XMMatrixRotationZ(initialZ) * XMMatrixRotationX(initialX) * XMMatrixRotationY(initialY);
 
-	XMMATRIX cameraTrackMatrix = XMMatrixRotationZ(cameraZ) * XMMatrixRotationX(cameraX) * XMMatrixRotationY(cameraY);
+	// XMMATRIX cameraTrackMatrix = XMMatrixRotationZ(cameraZ) * XMMatrixRotationX(cameraX) * XMMatrixRotationY(cameraY);
+	
+	XMMATRIX cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(cameraX, cameraY, cameraZ, cameraW * -1.0f));
+
+	if(lockToYRotation)
+		cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(0.0f, cameraY, 0.0f, cameraW * -1.0f));
 
 	modelview = initialMatrix * cameraTrackMatrix * modelview * XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees));
 
@@ -855,6 +863,10 @@ void loadVideoConfig(boost::filesystem::path filename) {
 				initialX = y.value();
 				initialY = pt.get<float>("initial_y");
 				initialZ = pt.get<float>("initial_z");
+			}
+
+			if (boost::optional<bool> lockToY = pt.get_optional<bool>("lock_to_y_rotation")) {
+				lockToYRotation = lockToY.value();
 			}
 		}
 		else {
@@ -1471,6 +1483,7 @@ int main(int argc, char* argv[])
 						cameraX = atof(row[0].c_str()) * -1.0f;
 						cameraY = atof(row[1].c_str()) * -1.0f;
 						cameraZ = atof(row[2].c_str()) * -1.0f;
+						cameraW = atof(row[3].c_str()) * -1.0f;
 
 						double roll = 0.0;
 					}
@@ -1482,6 +1495,7 @@ int main(int argc, char* argv[])
 						cameraX = 0.0f;
 						cameraY = 0.0f;
 						cameraZ = 0.0f;
+						cameraW = 0.0f;
 
 						file.clear();
 						file.seekg(0, ios::beg);
