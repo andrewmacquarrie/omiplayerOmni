@@ -1412,7 +1412,7 @@ int main(int argc, char* argv[])
 	//	}
 	//});
 
-	std::ifstream file("newsroomCut25fpsHDMdata_CLEANED.csv");
+	std::ifstream file(cameraTrackCSV);
 
 	while (true)
 	{
