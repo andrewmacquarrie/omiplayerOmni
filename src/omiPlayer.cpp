@@ -6,6 +6,7 @@
 #include "VideoPlayer.h"
 #include "Console.h"
 #include "resource.h"
+#include "trackCamera.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb.h"
@@ -31,13 +32,30 @@ HWND hWnd{ NULL };
 RECT windowClientRect{ 0, 0, 1920, 1080 };
 
 // UCL CAVE spec. 
-RECT caveWindowClientRect{ 0, 0, 5300, 1050 };
+// RECT caveWindowClientRect{ 0, 0, 5300, 1050 };
+// this is 1080p but probably needs to be changed for dvi screen
+float caveScreenHeight = 1050.0f;
+float insetScreenHeight = 1080.0f;
+float insetScreenWidth = 1920.0f;
+float insetZoom = 0.1f;
+float caveForwardDegrees = 0.0f;
+RECT caveWindowClientRect{ 0, 0, (1400 * 3) + insetScreenWidth, (insetScreenHeight > caveScreenHeight) ? insetScreenHeight : caveScreenHeight };
 
 char windowTitle[]{"omiPlayer for Oculus by @omigamedev - DX11"};
 bool active{ true };
 bool playing{ false };
 bool first_frame{ true };
 
+// ME
+float cameraYaw{ 0.0f };
+float cameraPitch{ 0.0f };
+float insetYaw{ 0.0f };
+
+float cameraZ{ 0.0f };
+float cameraX{ 0.0f };
+float cameraY{ 0.0f };
+
+float insetPitch{ 0.0f };
 
 // config settings for omni (multi) player
 bool shouldSendUDPPackets { false };
@@ -173,24 +191,30 @@ void InitCAVE()
 		{
 		case 0:
 			caveViewports[i].Width = 1400;
-			caveViewports[i].TopLeftX =0;
+			caveViewports[i].TopLeftX = 0;
+			caveViewports[i].Height = 1050.0f;
 			break;
 		case 1:
 			caveViewports[i].Width = 1400;
 			caveViewports[i].TopLeftX = 1400;
+			caveViewports[i].Height = 1050.0f;
 			break;
 		case 2:
 			caveViewports[i].Width = 1400;
 			caveViewports[i].TopLeftX = 2800;
+			caveViewports[i].Height = 1050.0f;
 			break;
 		case 3:
 		default:
-			caveViewports[i].Width = 1100;
+			//caveViewports[i].Width = 1100;
 			caveViewports[i].TopLeftX = 4200;
+			//caveViewports[i].Height = (float)caveWindowClientRect.bottom;
+			caveViewports[i].Height = insetScreenHeight;
+			caveViewports[i].Width = insetScreenWidth;
 			break;
 		}
 
-		caveViewports[i].Height = (float)caveWindowClientRect.bottom;
+		// caveViewports[i].Height = (float)caveWindowClientRect.bottom;
 		caveViewports[i].TopLeftY = 0.0f;
 		caveViewports[i].MinDepth = 0.0f;
 		caveViewports[i].MaxDepth = 1.0f;
@@ -256,7 +280,6 @@ void RenderFrame(int eyeID)
 
 void RenderCAVEFrame(int wallID)
 {
-
 	XMMATRIX eyeProj;
 
 	XMMATRIX modelview;
@@ -269,6 +292,8 @@ void RenderCAVEFrame(int wallID)
 	case 0:
 		eyeProj = XMMatrixPerspectiveRH(0.2f, 0.2f * 1050.0f / 1400.0f, 0.1f, 1000.0f);
 		modelview = XMMatrixRotationY(XMConvertToRadians(-180));
+		//eyeProj = XMMatrixPerspectiveRH(0.1f, 0.1f * 1050.0f / 1400.0f, 0.1f, 1000.0f);
+		//modelview = XMMatrixRotationY(XMConvertToRadians(-90));
 		break;
 	case 1:
 		eyeProj = XMMatrixPerspectiveRH(0.2f, 0.2f * 1050.0f / 1400.0f, 0.1f, 1000.0f);
@@ -279,14 +304,25 @@ void RenderCAVEFrame(int wallID)
 		modelview = XMMatrixIdentity();
 		break;
 	case 3:
+		/*
 		// 1033 & 1125 found by experimentation because the UCL CAVE has an odd asymmetrical projection on floor
 		eyeProj = XMMatrixPerspectiveOffCenterRH(-0.1f * 1400.0f / 1050.0f, 0.1f * 1400.0f / 1050.0f,
-			-0.1f * 1400.0f / 1033.0f,
-			0.1f * 1400.0f / 1125.0f,
-			0.1f, 1000.0f);
-		modelview = XMMatrixRotationY(XMConvertToRadians(90)) * modelview;
+		-0.1f * 1400.0f / 1033.0f,
+		0.1f * 1400.0f / 1125.0f,
+		0.1f, 1000.0f);
+		modelview = XMMatrixRotationY(XMConvertToRadians(90)) * modelview;*/
+		eyeProj = XMMatrixPerspectiveRH(insetZoom, insetZoom * insetScreenHeight / insetScreenWidth, 0.1f, 1000.0f);
+		modelview = XMMatrixRotationY(XMConvertToRadians(-180)); // I would have expected this to be -90 (case 1 above) - but in fact forward wall is case 0...
+		modelview = modelview * XMMatrixRotationRollPitchYaw(XMConvertToRadians(insetPitch), XMConvertToRadians(insetYaw), 0.0f);
 		break;
 	}
+
+	XMMATRIX cameraTrackMatrix = XMMatrixRotationRollPitchYaw(XMConvertToRadians(cameraPitch), XMConvertToRadians(cameraYaw), 0.0f);
+
+	cameraTrackMatrix = XMMatrixRotationZ(cameraZ) * XMMatrixRotationX(cameraX) * XMMatrixRotationY(cameraY);
+
+	modelview = cameraTrackMatrix * modelview * XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees));
+
 	XMMATRIX texmat = XMMatrixIdentity();
 	if (bottomUp)
 		texmat = XMMatrixScaling(1, .5f, 1);
@@ -320,6 +356,13 @@ void UpdateVideo()
 		frameReady = false;
 	}
 }
+
+std::istream& operator>>(std::istream& str, TrackCamera& data)
+{
+	data.readNextRow(str);
+	return str;
+}
+
 void Render(float dt)
 {
 	static float elapsed = 0;
@@ -533,6 +576,39 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 		if (wp == VK_F1)
 		{
 			Console::RedirectIOToConsole();
+		}
+		if (wp == 73) // the I key (for zoom in)
+		{
+			if (insetZoom > 0.05)
+				insetZoom = insetZoom - 0.01f;
+		}
+		if (wp == 79) // the o key (for zoom out)
+		{
+			insetZoom = insetZoom + 0.01f;
+		}
+		if (wp == 65) // the a key (rotate whole panorama anticlockwise)
+		{
+			caveForwardDegrees = caveForwardDegrees + 10;
+		}
+		if (wp == 67) // the c key (rotate whole panorama clockwise)
+		{
+			caveForwardDegrees = caveForwardDegrees - 10;
+		}
+		if (wp == 37) // left arrow
+		{
+			insetYaw = insetYaw - 0.1f;
+		}
+		if (wp == 38) // up arrow
+		{
+			insetPitch = insetPitch - 0.1f;
+		}
+		if (wp == 39) // right arrow
+		{
+			insetYaw = insetYaw + 0.1f;
+		}
+		if (wp == 40) // down arrow
+		{
+			insetPitch = insetPitch + 0.1f;
 		}
 		if (wp == VK_ESCAPE)
 		{
@@ -1336,6 +1412,8 @@ int main(int argc, char* argv[])
 	//	}
 	//});
 
+	std::ifstream file("newsroomCut25fpsHDMdata_CLEANED.csv");
+
 	while (true)
 	{
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -1367,6 +1445,35 @@ int main(int argc, char* argv[])
 
 			if (elapsed_decode > frameTime)
 			{
+				// frameTime sets set to the correct time for this video => This if will be called once per VIDEO frame
+				if (playing) {
+					TrackCamera row;
+					if (file >> row) {
+						/*
+						cameraPitch = atof(row[2].c_str());
+						cameraYaw = atof(row[3].c_str());*/
+
+						// not sure why I need to invert these?
+						cameraX = atof(row[0].c_str()) * -1.0f;
+						cameraY = atof(row[1].c_str()) * -1.0f;
+						cameraZ = atof(row[2].c_str()) * -1.0f;
+
+						double roll = 0.0;
+					}
+					else {
+						// EOF reached
+						cameraPitch = 0.0f;
+						cameraYaw = 0.0f;
+
+						cameraX = 0.0f;
+						cameraY = 0.0f;
+						cameraZ = 0.0f;
+
+						file.clear();
+						file.seekg(0, ios::beg);
+					}
+				}
+
 				//if (playing)
 				//{
 				//    D3D11_MAPPED_SUBRESOURCE map;

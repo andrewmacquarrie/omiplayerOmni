@@ -98,6 +98,7 @@
     <ClInclude Include="src\resource.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\targetver.h" />
+    <ClInclude Include="src\trackCamera.h" />
     <ClInclude Include="src\VideoPlayer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +108,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\trackCamera.cpp" />
     <ClCompile Include="src\VideoPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>

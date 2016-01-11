@@ -34,6 +34,9 @@
     <ClInclude Include="src\Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\trackCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\omiPlayer.cpp">
@@ -46,6 +49,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\trackCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
