@@ -210,7 +210,7 @@ void InitCAVE()
 			caveViewports[i].TopLeftX = 4200;
 			//caveViewports[i].Height = (float)caveWindowClientRect.bottom;
 			caveViewports[i].Height = insetScreenHeight;
-			caveViewports[i].Width = insetScreenWidth;
+			caveViewports[i].Width = caveWindowClientRect.bottom;
 			break;
 		}
 
@@ -842,6 +842,9 @@ void loadVideoConfig(boost::filesystem::path filename) {
 				caveWindowClientRect.right = caveWidth.value();
 			}
 
+			if (boost::optional<int> caveHeightOverride = pt.get_optional<int>("cave_height_override")) {
+				caveWindowClientRect.bottom = caveHeightOverride.value();
+			}
 		}
 		else {
 			// set defaults
