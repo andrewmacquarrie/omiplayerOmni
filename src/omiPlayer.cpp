@@ -39,6 +39,7 @@ float insetScreenHeight = 1080.0f;
 float insetScreenWidth = 1920.0f;
 float insetZoom = 0.1f;
 float caveForwardDegrees = 0.0f;
+float caveUpDegrees = 0.0f;
 RECT caveWindowClientRect{ 0, 0, (1400 * 3) + insetScreenWidth, (insetScreenHeight > caveScreenHeight) ? insetScreenHeight : caveScreenHeight };
 
 char windowTitle[]{"omiPlayer for Oculus by @omigamedev - DX11"};
@@ -336,7 +337,7 @@ void RenderCAVEFrame(int wallID)
 
 	eyeProj = initialMatrix * cameraTrackMatrix * eyeProj;
 
-	modelview =  XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * modelview;
+	modelview = XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * modelview;
 
 	XMMATRIX texmat = XMMatrixIdentity();
 	if (bottomUp)
@@ -608,6 +609,14 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 		if (wp == 67) // the c key (rotate whole panorama clockwise)
 		{
 			caveForwardDegrees = caveForwardDegrees - 10;
+		}
+		if (wp == 68) // the d key (rotate whole panorama downwards)
+		{
+			caveUpDegrees = caveUpDegrees + 10;
+		}
+		if (wp == 85) // the u key (rotate whole panorama upwards)
+		{
+			caveUpDegrees = caveUpDegrees - 10;
 		}
 		if (wp == 37) // left arrow
 		{
