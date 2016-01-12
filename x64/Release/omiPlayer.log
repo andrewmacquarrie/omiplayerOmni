@@ -1,31 +1,31 @@
-﻿Build started 11/01/2016 18:05:34.
+﻿Build started 12/01/2016 10:17:52.
      1>Project "C:\projects\omiplayerOmni\omiPlayer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\omiPlayerOmni.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt src\omiPlayer.cpp
          omiPlayer.cpp
      1>src\omiPlayer.cpp(42): warning C4244: 'initializing' : conversion from 'float' to 'LONG', possible loss of data
      1>src\omiPlayer.cpp(284): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
-     1>src\omiPlayer.cpp(352): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
-     1>src\omiPlayer.cpp(460): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
-     1>src\omiPlayer.cpp(527): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(498): warning C4102: 'std' : unreferenced label
-     1>src\omiPlayer.cpp(493): warning C4101: 'fromlen' : unreferenced local variable
-     1>src\omiPlayer.cpp(492): warning C4101: 'sAddr' : unreferenced local variable
-     1>src\omiPlayer.cpp(680): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(693): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(703): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(717): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(727): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1042): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1045): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1068): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1085): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
-     1>src\omiPlayer.cpp(1354): warning C4806: '&' : unsafe operation: no value of type 'bool' promoted to type 'ovrHmdCaps' can equal the given constant
-     1>src\omiPlayer.cpp(1483): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1484): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(354): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+     1>src\omiPlayer.cpp(462): warning C4267: 'argument' : conversion from 'size_t' to 'UINT', possible loss of data
+     1>src\omiPlayer.cpp(529): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(500): warning C4102: 'std' : unreferenced label
+     1>src\omiPlayer.cpp(495): warning C4101: 'fromlen' : unreferenced local variable
+     1>src\omiPlayer.cpp(494): warning C4101: 'sAddr' : unreferenced local variable
+     1>src\omiPlayer.cpp(682): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(695): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(705): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(719): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(729): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1044): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1047): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1070): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1087): warning C4244: 'initializing' : conversion from 'SIZE_T' to 'int', possible loss of data
+     1>src\omiPlayer.cpp(1356): warning C4806: '&' : unsafe operation: no value of type 'bool' promoted to type 'ovrHmdCaps' can equal the given constant
      1>src\omiPlayer.cpp(1485): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>src\omiPlayer.cpp(1486): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>src\omiPlayer.cpp(1063): warning C4101: 'pOutput' : unreferenced local variable
+     1>src\omiPlayer.cpp(1487): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1488): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>src\omiPlayer.cpp(1065): warning C4101: 'pOutput' : unreferenced local variable
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Software\boost_1_59_0\stage\x64\lib advapi32.lib shell32.lib ws2_32.lib winmm.lib DXGI.lib shlwapi.lib OpenAL32.lib avcodec.lib avdevice.lib avfilter.lib avformat.lib avresample.lib avutil.lib swscale.lib libovr64.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\projects\omiplayerOmni\x64\Release\omiPlayerOmni.lib" /MACHINE:X64 x64\Release\omiPlayer.res
          x64\Release\Console.obj
@@ -68,4 +68,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.34
+Time Elapsed 00:00:03.37

@@ -319,7 +319,7 @@ void RenderCAVEFrame(int wallID)
 		modelview = XMMatrixRotationY(XMConvertToRadians(90)) * modelview;*/
 		eyeProj = XMMatrixPerspectiveRH(insetZoom, insetZoom * insetScreenHeight / insetScreenWidth, 0.1f, 1000.0f);
 		modelview = XMMatrixRotationY(XMConvertToRadians(-90));
-		modelview = modelview * XMMatrixRotationRollPitchYaw(XMConvertToRadians(insetPitch), XMConvertToRadians(insetYaw), 0.0f);
+		//modelview = modelview * XMMatrixRotationRollPitchYaw(XMConvertToRadians(insetPitch), XMConvertToRadians(insetYaw), 0.0f);
 		break;
 	}
 
@@ -334,7 +334,9 @@ void RenderCAVEFrame(int wallID)
 	if(lockToYRotation)
 		cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(0.0f, cameraY, 0.0f, cameraW * -1.0f));
 
-	modelview = initialMatrix * cameraTrackMatrix * modelview * XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees));
+	eyeProj = initialMatrix * cameraTrackMatrix * eyeProj;
+
+	modelview =  XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * modelview;
 
 	XMMATRIX texmat = XMMatrixIdentity();
 	if (bottomUp)
