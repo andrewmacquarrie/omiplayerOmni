@@ -320,7 +320,7 @@ void RenderCAVEFrame(int wallID)
 		modelview = XMMatrixRotationY(XMConvertToRadians(90)) * modelview;*/
 		eyeProj = XMMatrixPerspectiveRH(insetZoom, insetZoom * insetScreenHeight / insetScreenWidth, 0.1f, 1000.0f);
 		modelview = XMMatrixRotationY(XMConvertToRadians(-90));
-		//modelview = modelview * XMMatrixRotationRollPitchYaw(XMConvertToRadians(insetPitch), XMConvertToRadians(insetYaw), 0.0f);
+		modelview = modelview * XMMatrixRotationRollPitchYaw(XMConvertToRadians(insetPitch), XMConvertToRadians(insetYaw), 0.0f);
 		break;
 	}
 
