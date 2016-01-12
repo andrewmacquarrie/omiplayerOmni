@@ -335,7 +335,9 @@ void RenderCAVEFrame(int wallID)
 	if(lockToYRotation)
 		cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(0.0f, cameraY, 0.0f, cameraW * -1.0f));
 
-	eyeProj = initialMatrix * cameraTrackMatrix * eyeProj;
+	cameraTrackMatrix = XMMatrixRotationY(XMConvertToRadians(-90)) * cameraTrackMatrix * XMMatrixRotationY(XMConvertToRadians(90));
+
+	//eyeProj = initialMatrix * cameraTrackMatrix * eyeProj;
 
 	modelview = XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * modelview;
 
