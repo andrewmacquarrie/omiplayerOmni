@@ -62,6 +62,7 @@ float insetPitch{ 0.0f };
 // config settings for omni (multi) player
 bool shouldSendUDPPackets { false };
 bool shouldCameraTrack{ false };
+std::string insetFileName{ "" };
 std::string udp_ip_address{ "" };
 std::string cameraTrackCSV{ "" };
 int udp_port{ 0 };
@@ -490,17 +491,14 @@ void OpenAL_Destroy()
 	alcCloseDevice(oalDevice);
 }
 
-void SendDataPacket(bool play) {
+void SendDataPacket(string message) {
 	SOCKET sock;
 	addrinfo* pAddr;
 	addrinfo hints;
 	sockaddr sAddr;
-	int fromlen;
 
 	WSADATA wsa;
 	unsigned short usWSAVersion = MAKEWORD(2, 2);
-
-	std:string message = play ? "PLAY" : "PAUSE";
 
 	char * Buffer = new char[message.length() + 1];
 	std::strcpy(Buffer, message.c_str());
@@ -529,7 +527,7 @@ void SendDataPacket(bool play) {
 	}
 
 	//Start Transmission
-	ret = sendto(sock, Buffer, sizeof(Buffer), 0, pAddr->ai_addr, pAddr->ai_addrlen);
+	ret = sendto(sock, Buffer, message.length() + 1, 0, pAddr->ai_addr, pAddr->ai_addrlen);
 	if (ret != sizeof(Buffer))
 	{
 		std::cerr << "Could not send data\n";
@@ -588,7 +586,7 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 				SetWindowText(hWnd, title);
 
 			if (shouldSendUDPPackets) {
-				SendDataPacket(playing);
+				SendDataPacket(playing ? "PLAY" : "PAUSE");
 			}
 		}
 		if (wp == VK_F1)
@@ -876,6 +874,12 @@ void loadVideoConfig(boost::filesystem::path filename) {
 				initialX = y.value();
 				initialY = pt.get<float>("initial_y");
 				initialZ = pt.get<float>("initial_z");
+			}
+
+			if (boost::optional<std::string> inset_file = pt.get_optional<std::string>("inset_file")) {
+				if (shouldSendUDPPackets) {
+					SendDataPacket("OPEN " + inset_file.value());
+				}
 			}
 
 			if (boost::optional<bool> lockToY = pt.get_optional<bool>("lock_to_y_rotation")) {
