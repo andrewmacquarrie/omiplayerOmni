@@ -612,11 +612,11 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 		}
 		if (wp == 68) // the d key (rotate whole panorama downwards)
 		{
-			caveUpDegrees = caveUpDegrees + 10;
+			caveUpDegrees = caveUpDegrees + 2;
 		}
 		if (wp == 85) // the u key (rotate whole panorama upwards)
 		{
-			caveUpDegrees = caveUpDegrees - 10;
+			caveUpDegrees = caveUpDegrees - 2;
 		}
 		if (wp == 37) // left arrow
 		{
