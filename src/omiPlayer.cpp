@@ -331,16 +331,31 @@ void RenderCAVEFrame(int wallID)
 
 	// XMMATRIX cameraTrackMatrix = XMMatrixRotationZ(cameraZ) * XMMatrixRotationX(cameraX) * XMMatrixRotationY(cameraY);
 	
-	XMMATRIX cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(cameraX, cameraY, cameraZ, cameraW * -1.0f));
+	XMMATRIX cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(cameraX, cameraY, cameraZ, cameraW));
 
-	if(lockToYRotation)
-		cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(0.0f, cameraY, 0.0f, cameraW * -1.0f));
+	// rhs to lhs, from http://answers.unity3d.com/storage/temp/12048-lefthandedtorighthanded.pdf
+	// also this: http://www.gamedev.net/topic/385001-converting-a-transformation-matrix-from-right-handed-to-left-handed-coord-system/
+	XMMATRIX flipzMatrix = XMMATRIX(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	cameraTrackMatrix = flipzMatrix * cameraTrackMatrix * flipzMatrix;
+
+	//if(lockToYRotation)
+	//	cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(0.0f, cameraY, 0.0f, cameraW * -1.0f));
+	
+	//cameraTrackMatrix = XMMatrixRotationY(XMConvertToRadians(-90)) * cameraTrackMatrix * XMMatrixRotationY(XMConvertToRadians(90));
+	
+	//eyeProj = initialMatrix * cameraTrackMatrix * eyeProj;
+	//modelview = cameraTrackMatrix * XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * modelview;
+
+	//modelview = cameraTrackMatrix * modelview;
+	cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(cameraX, cameraY, cameraZ, cameraW * -1.0f));
 
 	cameraTrackMatrix = XMMatrixRotationY(XMConvertToRadians(-90)) * cameraTrackMatrix * XMMatrixRotationY(XMConvertToRadians(90));
 
-	//eyeProj = initialMatrix * cameraTrackMatrix * eyeProj;
+	modelview = cameraTrackMatrix * modelview;
+	eyeProj = eyeProj;
 
-	modelview = XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * modelview;
+
+
 
 	XMMATRIX texmat = XMMatrixIdentity();
 	if (bottomUp)
