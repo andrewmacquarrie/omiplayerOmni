@@ -327,6 +327,8 @@ void RenderCAVEFrame(int wallID)
 
 	XMMATRIX initialMatrix = XMMatrixRotationZ(initialZ) * XMMatrixRotationX(initialX) * XMMatrixRotationY(initialY);
 
+	modelview = XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * modelview;
+
 	XMMATRIX cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(cameraX, cameraY, cameraZ, cameraW * -1.0f));
 	if(lockToYRotation)
 		cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(0.0f, cameraY, 0.0f, cameraW * -1.0f));
@@ -606,11 +608,11 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 		}
 		if (wp == 68) // the d key (rotate whole panorama downwards)
 		{
-			caveUpDegrees = caveUpDegrees + 2;
+			caveUpDegrees = caveUpDegrees + 1;
 		}
 		if (wp == 85) // the u key (rotate whole panorama upwards)
 		{
-			caveUpDegrees = caveUpDegrees - 2;
+			caveUpDegrees = caveUpDegrees - 1;
 		}
 		if (wp == 37) // left arrow
 		{
