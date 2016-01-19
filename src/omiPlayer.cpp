@@ -600,19 +600,19 @@ LRESULT CALLBACK MainProc(HWND hWnd, UINT msgID, WPARAM wp, LPARAM lp)
 		}
 		if (wp == 65) // the a key (rotate whole panorama anticlockwise)
 		{
-			caveForwardDegrees = caveForwardDegrees + 10;
+			caveForwardDegrees = caveForwardDegrees + 10.0f;
 		}
 		if (wp == 67) // the c key (rotate whole panorama clockwise)
 		{
-			caveForwardDegrees = caveForwardDegrees - 10;
+			caveForwardDegrees = caveForwardDegrees - 10.0f;
 		}
 		if (wp == 68) // the d key (rotate whole panorama downwards)
 		{
-			caveUpDegrees = caveUpDegrees + 1;
+			caveUpDegrees = caveUpDegrees + 1.0f;
 		}
 		if (wp == 85) // the u key (rotate whole panorama upwards)
 		{
-			caveUpDegrees = caveUpDegrees - 1;
+			caveUpDegrees = caveUpDegrees - 1.0f;
 		}
 		if (wp == 37) // left arrow
 		{
@@ -870,6 +870,23 @@ void loadVideoConfig(boost::filesystem::path filename) {
 				initialX = y.value();
 				initialY = pt.get<float>("initial_y");
 				initialZ = pt.get<float>("initial_z");
+			}
+
+			//initial cave/tv setup settings
+			if (boost::optional<float> v = pt.get_optional<float>("inset_zoom")) {
+				insetZoom = v.value();
+			}
+			if (boost::optional<float> v = pt.get_optional<float>("cave_forward_degrees")) {
+				caveForwardDegrees = v.value();
+			}
+			if (boost::optional<float> v = pt.get_optional<float>("cave_up_degrees")) {
+				caveUpDegrees = v.value();
+			}
+			if (boost::optional<float> v = pt.get_optional<float>("inset_yaw")) {
+				insetYaw = v.value();
+			}
+			if (boost::optional<float> v = pt.get_optional<float>("inset_pitch")) {
+				insetPitch = v.value();
 			}
 
 			if (boost::optional<std::string> inset_file = pt.get_optional<std::string>("inset_file")) {
