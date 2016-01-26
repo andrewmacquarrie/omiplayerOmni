@@ -40,6 +40,7 @@ float insetScreenWidth = 1920.0f;
 float insetZoom = 0.1f;
 float caveForwardDegrees = 0.0f;
 float caveUpDegrees = 0.0f;
+float translationAmount = 0.0f;
 RECT caveWindowClientRect{ 0, 0, (1400 * 3) + insetScreenWidth, (insetScreenHeight > caveScreenHeight) ? insetScreenHeight : caveScreenHeight };
 
 char windowTitle[]{"omiPlayer for Oculus by @omigamedev - DX11"};
@@ -326,8 +327,9 @@ void RenderCAVEFrame(int wallID)
 	}
 
 	XMMATRIX initialMatrix = XMMatrixRotationZ(initialZ) * XMMatrixRotationX(initialX) * XMMatrixRotationY(initialY);
+	XMMATRIX translate = XMMatrixTranslation(translationAmount, 0.0f, 0.0f); // translate torwards front wall to make surround video footage look more than 180. Is a rough approx, stright lines wont be straight as not in centre of sphere any more!
 
-	modelview = XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * modelview;
+	modelview = XMMatrixRotationY(XMConvertToRadians(caveForwardDegrees)) * XMMatrixRotationZ(XMConvertToRadians(caveUpDegrees)) * translate * modelview;
 
 	XMMATRIX cameraTrackMatrix = XMMatrixRotationQuaternion(XMVectorSet(cameraX, cameraY, cameraZ, cameraW * -1.0f));
 	if(lockToYRotation)
@@ -887,6 +889,9 @@ void loadVideoConfig(boost::filesystem::path filename) {
 			}
 			if (boost::optional<float> v = pt.get_optional<float>("inset_pitch")) {
 				insetPitch = v.value();
+			}
+			if (boost::optional<float> v = pt.get_optional<float>("x_translation")) {
+				translationAmount = v.value();
 			}
 
 			if (boost::optional<std::string> inset_file = pt.get_optional<std::string>("inset_file")) {
