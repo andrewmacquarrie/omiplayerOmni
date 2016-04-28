@@ -72,6 +72,7 @@ float initialY{ 0.0f };
 float initialZ{ 0.0f };
 
 bool lockToYRotation{ false };
+bool tvCondition{ false };
 
 // Source
 enum class MediaType
@@ -289,6 +290,9 @@ void RenderFrame(int eyeID)
 
 void RenderCAVEFrame(int wallID)
 {
+	if (tvCondition && wallID < 3)
+		return;
+
 	XMMATRIX eyeProj;
 
 	XMMATRIX modelview;
@@ -423,7 +427,7 @@ void Render(float dt)
 		UINT stride = sizeof(Vertex), offset = 0;
 
 		d3d_context->OMSetRenderTargets(1, &d3d_backbuffer, nullptr);
-		d3d_context->ClearRenderTargetView(d3d_backbuffer, DirectX::Colors::Gray);
+		d3d_context->ClearRenderTargetView(d3d_backbuffer, DirectX::Colors::Black);
 		d3d_context->ClearDepthStencilView(d3d_depth, D3D11_CLEAR_DEPTH, 1, 0);
 		d3d_context->PSSetShaderResources(0, 1, &d3d_textureView[frameIndex]);
 
@@ -454,7 +458,7 @@ void Render(float dt)
 		perFrame.modelview = XMMatrixTranslation(0, 0, 1);// *XMMatrixScaling(.7f, .7f, .7f);
 		d3d_context->UpdateSubresource(d3d_perFrameBuffer, 0, nullptr, &perFrame, 0, 0);
 		d3d_context->OMSetRenderTargets(1, &d3d_backbuffer, nullptr);
-		d3d_context->ClearRenderTargetView(d3d_backbuffer, DirectX::Colors::Gray);
+		d3d_context->ClearRenderTargetView(d3d_backbuffer, DirectX::Colors::Black);
 		d3d_context->ClearDepthStencilView(d3d_depth, D3D11_CLEAR_DEPTH, 1, 0);
 		//d3d_context->PSSetShaderResources(0, 1, &d3d_rttTextureView[0]);
 		d3d_context->PSSetShaderResources(0, 1, &d3d_textureView[frameIndex]);
@@ -902,6 +906,10 @@ void loadVideoConfig(boost::filesystem::path filename) {
 
 			if (boost::optional<bool> lockToY = pt.get_optional<bool>("lock_to_y_rotation")) {
 				lockToYRotation = lockToY.value();
+			}
+
+			if (boost::optional<bool> tvCondConfig = pt.get_optional<bool>("tv_condition")) {
+				tvCondition = tvCondConfig.value();
 			}
 		}
 		else {
